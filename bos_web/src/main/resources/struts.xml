@@ -11,6 +11,9 @@
         <action name="page_*_*">
             <result type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
         </action>
+
+        <action name="userAction_*" class="userAction" method="{1}">
+        </action>
     </package>
 
 </struts>
