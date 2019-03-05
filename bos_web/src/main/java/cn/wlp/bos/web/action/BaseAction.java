@@ -15,23 +15,24 @@ import java.lang.reflect.Type;
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
     public static final String HOME = "home";
 
-    protected T t;
+    protected T model;
 
     @Override
     public T getModel() {
-        return t;
+        return model;
     }
 
     public BaseAction() {
-        ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
+        ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
         Type[] actualTypeArguments = genericSuperclass.getActualTypeArguments();
         Class<T> entityClass = (Class<T>) actualTypeArguments[0];
         try {
-            T t = entityClass.newInstance();
+            model = entityClass.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
+
 }

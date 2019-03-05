@@ -6,6 +6,7 @@ import cn.wlp.bos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.DigestUtils;
 
 import java.io.Serializable;
 
@@ -25,5 +26,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Serializable id) {
         return userDao.findById(id);
+    }
+
+    @Override
+    public User login(User model) {
+        User user = userDao.findUserByUsername(model.getUsername());
+        if (user != null) {
+            String pwd = DigestUtils.md5DigestAsHex(model.getPassword().getBytes());
+            String password = user.getPassword();
+            if (password.equals(pwd)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void editPassword(User user) {
+        String psw = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+        user.setPassword(psw);
+        userDao.update(user);
     }
 }
