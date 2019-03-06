@@ -1,5 +1,7 @@
 package cn.wlp.bos.dao;
 
+import cn.wlp.bos.common.PageBean;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,4 +21,10 @@ public interface BaseDao<T> {
     public T findById(Serializable id);
 
     public List<T> findAll();
+
+    void pageQuery(PageBean pageBean);
+
+    void executeUpdate(String queryName, Object... objects);
+
+    void saveOrUpdate(T entity);
 }

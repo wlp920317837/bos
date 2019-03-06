@@ -32,4 +32,10 @@
             <one-to-many class="cn.wlp.bos.domain.Decidedzone"/>
         </set>
     </class>
+    <query name="staff.delete">
+        update Staff s set s.deltag='1' where s.id = ?
+    </query>
+    <query name="staff.restoreBatch">
+        update Staff s set s.deltag='0' where s.id = ?
+    </query>
 </hibernate-mapping>
