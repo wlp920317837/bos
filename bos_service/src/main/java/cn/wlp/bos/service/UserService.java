@@ -6,9 +6,7 @@ import java.io.Serializable;
 
 /**
  * @author Wlp
- * @program bos_parent
- * @description
- * @create 2019-03-04 22:03
+ * @date 2019-03-05 21:52
  **/
 public interface UserService {
 

@@ -183,7 +183,7 @@
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',border:false"
-     style="height:80px;padding:10px;background:url('/images/header_bg.png') no-repeat right;">
+     style="height:80px;padding:10px;background:url('${pageContext.request.contextPath }/images/headerbg.png') no-repeat right;">
     <div id="sessionInfoDiv"
          style="position: absolute;right: 5px;top:10px;">
         [<strong>超级管理员</strong>]，欢迎你！
@@ -230,7 +230,7 @@
     </div>
 </div>
 <div data-options="region:'south',border:false"
-     style="height:50px;padding:10px;background:url('/images/header_bg.png') no-repeat right;">
+     style="height:50px;padding:10px;background:url('${pageContext.request.contextPath }/images/headerbg.png') no-repeat right;">
     <table style="width: 100%;">
         <tbody>
         <tr>

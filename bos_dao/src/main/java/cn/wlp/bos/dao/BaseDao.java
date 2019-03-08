@@ -1,15 +1,14 @@
 package cn.wlp.bos.dao;
 
 import cn.wlp.bos.common.PageBean;
+import org.hibernate.criterion.DetachedCriteria;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Wlp
- * @program bos_parent
- * @description dao模板
- * @create 2019-03-04 21:45
+ * @date 2019-03-05 21:52
  **/
 public interface BaseDao<T> {
     public void save(T entity);
@@ -27,4 +26,8 @@ public interface BaseDao<T> {
     void executeUpdate(String queryName, Object... objects);
 
     void saveOrUpdate(T entity);
+
+    void deleteById(String id);
+
+    List findByCriteria(DetachedCriteria dc);
 }

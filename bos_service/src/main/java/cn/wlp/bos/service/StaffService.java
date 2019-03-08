@@ -3,6 +3,8 @@ package cn.wlp.bos.service;
 import cn.wlp.bos.common.PageBean;
 import cn.wlp.bos.domain.Staff;
 
+import java.util.List;
+
 /**
  * @author Wlp
  * @date 2019-03-05 21:55
@@ -57,4 +59,14 @@ public interface StaffService {
      * @date 2019/3/6
      */
     void edit(Staff model);
+
+    /**
+     * findStaffNoA
+     *
+     * @return java.util.List<cn.wlp.bos.domain.Staff>
+     * @author 王力鹏
+     * @date 2019/3/7
+     */
+    List<Staff> findStaffNoA();
+
 }

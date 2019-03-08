@@ -4,9 +4,7 @@ import cn.wlp.bos.domain.User;
 
 /**
  * @author Wlp
- * @program bos_parent
- * @description
- * @create 2019-03-04 22:07
+ * @date 2019-03-05 21:52
  **/
 public interface UserDao extends BaseDao<User> {
 

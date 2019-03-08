@@ -8,9 +8,7 @@ import java.util.List;
 
 /**
  * @author Wlp
- * @program bos_parent
- * @description userDao实现类
- * @create 2019-03-04 22:08
+ * @date 2019-03-05 21:52
  **/
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {

@@ -32,7 +32,8 @@
         }
 
         function doView() {
-            alert("查看...");
+            $("#searchForm").form('reset');
+            $('#searchWindow').window("open");
         }
 
         function doDelete() {
@@ -199,6 +200,45 @@
                 resizable: false
             });
 
+            // 查询分区
+            $('#searchWindow').window({
+                title: '查询分区',
+                width: 400,
+                modal: true,
+                shadow: true,
+                closed: true,
+                height: 400,
+                resizable: false
+            });
+
+            //定义一个工具方法，用于将指定的form表单中所有的输入项转为json数据{key:value,key:value}
+            $.fn.serializeJson = function () {
+                var serializeObj = {};
+                var array = this.serializeArray();
+                $(array).each(function () {
+                    if (serializeObj[this.name]) {
+                        if ($.isArray(serializeObj[this.name])) {
+                            serializeObj[this.name].push(this.value);
+                        } else {
+                            serializeObj[this.name] = [serializeObj[this.name], this.value];
+                        }
+                    } else {
+                        serializeObj[this.name] = this.value;
+                    }
+                });
+                return serializeObj;
+            };
+
+            $("#btn").click(function () {
+                //将指定的form表单中所有的输入项转为json数据{key:value,key:value}
+                var p = $("#searchForm").serializeJson();
+                console.info(p);
+                //调用数据表格的load方法，重新发送一次ajax请求，并且提交参数
+                $("#grid").datagrid("load", p);
+                //关闭查询窗口
+                $("#searchWindow").window("close");
+            });
+
             //为保存按钮绑定事件
             $("#save").click(function () {
                 //表单校验，如果通过，提交表单
@@ -207,7 +247,8 @@
                     $("#addForm").submit();
                 }
             });
-            //为保存按钮绑定事件
+
+            //为修改保存按钮绑定事件
             $("#saveEdit").click(function () {
                 //表单校验，如果通过，提交表单
                 var v = $("#editForm").form("validate");
@@ -293,7 +334,6 @@
             <a id="saveEdit" icon="icon-save" href="#" class="easyui-linkbutton" plain="true">保存</a>
         </div>
     </div>
-
     <div region="center" style="overflow:auto;padding:5px;" border="false">
         <form id="editForm" method="post" action="staffAction_edit.action">
             <table class="table-edit" width="80%" align="center">
@@ -325,6 +365,31 @@
                     <td>取派标准</td>
                     <td>
                         <input type="text" name="standard" class="easyui-validatebox" required="true"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<!-- 查询分区 -->
+<div class="easyui-window" title="查询分区窗口" id="searchWindow" collapsible="false" minimizable="false" maximizable="false"
+     style="top:20px;left:200px">
+    <div style="overflow:auto;padding:5px;" border="false">
+        <form id="searchForm">
+            <table class="table-edit" width="80%" align="center">
+                <tr class="title">
+                    <td colspan="2">查询条件</td>
+                </tr>
+                <tr>
+                    <td>姓名</td>
+                    <td><input type="text" name="name"/></td>
+                </tr>
+                <tr>
+                    <td>手机号</td>
+                    <td><input type="text" name="telephone"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
                     </td>
                 </tr>
             </table>

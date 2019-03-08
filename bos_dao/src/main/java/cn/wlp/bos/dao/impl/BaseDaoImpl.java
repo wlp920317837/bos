@@ -17,9 +17,7 @@ import java.util.List;
 
 /**
  * @author Wlp
- * @program bos_parent
- * @description dao模板实现类
- * @create 2019-03-04 21:47
+ * @date 2019-03-05 21:52
  **/
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
     private Class<T> entityClass;
@@ -72,8 +70,12 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
         if (list1.size() != 0) {
             pageBean.setTotal(list1.get(0));
         }
-        //查询每页信息
+        //设置聚合函数为空
         detachedCriteria.setProjection(null);
+        //设置查询结果为主要实体
+        detachedCriteria.setResultTransformer(DetachedCriteria.ROOT_ENTITY);
+
+        //查询每页信息
         Integer start = (page - 1) * pageSize;
         Integer end = pageSize;
         List list = this.getHibernateTemplate().findByCriteria(detachedCriteria, start, end);
@@ -96,5 +98,17 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
     @Override
     public void saveOrUpdate(T entity) {
         this.getHibernateTemplate().saveOrUpdate(entity);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        T entity = this.getHibernateTemplate().get(entityClass, id);
+        this.getHibernateTemplate().delete(entity);
+    }
+
+    @Override
+    public List findByCriteria(DetachedCriteria dc) {
+        List list = this.getHibernateTemplate().findByCriteria(dc);
+        return list;
     }
 }

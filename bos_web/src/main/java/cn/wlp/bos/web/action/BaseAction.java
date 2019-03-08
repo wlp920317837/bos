@@ -16,9 +16,7 @@ import java.util.List;
 
 /**
  * @author Wlp
- * @program bos_parent
- * @description action模板类
- * @create 2019-03-04 21:35
+ * @date 2019-03-05 21:52
  **/
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
     public static final String HOME = "home";

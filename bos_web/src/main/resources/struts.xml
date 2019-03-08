@@ -34,7 +34,16 @@
 
         <!-- 基础设置 -->
         <action name="staffAction_*" class="staffAction" method="{1}">
-            <result name="list" type="redirectAction">page_base_staff</result>
+            <result name="list">/WEB-INF/pages/base/staff.jsp</result>
+        </action>
+        <action name="regionAction_*" class="regionAction" method="{1}">
+            <result name="list">/WEB-INF/pages/base/region.jsp</result>
+        </action>
+        <action name="subareaAction_*" class="subareaAction" method="{1}">
+            <result name="list">/WEB-INF/pages/base/subarea.jsp</result>
+        </action>
+        <action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
+            <result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
         </action>
 
         <!-- 权限控制 -->

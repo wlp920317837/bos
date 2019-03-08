@@ -12,9 +12,7 @@ import java.io.Serializable;
 
 /**
  * @author Wlp
- * @program bos_parent
- * @description userService实现类
- * @create 2019-03-04 22:04
+ * @date 2019-03-05 21:52
  **/
 @Service
 @Transactional

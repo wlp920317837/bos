@@ -6,106 +6,119 @@ package cn.wlp.bos.domain;
 
 public class Subarea implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private String id;
-	private Decidedzone decidedzone;
-	private Region region;
-	private String addresskey;
-	private String startnum;
-	private String endnum;
-	private String single;
-	private String position;
+    private String id;
+    private Decidedzone decidedzone;
+    private Region region;
+    private String addresskey;
+    private String startnum;
+    private String endnum;
+    private String single;
+    private String position;
 
-	// Constructors
+    public String getSubareaid() {
+        return id;
+    }
 
-	/** default constructor */
-	public Subarea() {
-	}
+    public void setSubareaid(String subareaid) {
+    }
 
-	/** minimal constructor */
-	public Subarea(String id) {
-		this.id = id;
-	}
+    // Constructors
 
-	/** full constructor */
-	public Subarea(String id, Decidedzone decidedzone, Region region,
-			String addresskey, String startnum, String endnum, String single,
-			String position) {
-		this.id = id;
-		this.decidedzone = decidedzone;
-		this.region = region;
-		this.addresskey = addresskey;
-		this.startnum = startnum;
-		this.endnum = endnum;
-		this.single = single;
-		this.position = position;
-	}
+    /**
+     * default constructor
+     */
+    public Subarea() {
+    }
 
-	// Property accessors
+    /**
+     * minimal constructor
+     */
+    public Subarea(String id) {
+        this.id = id;
+    }
 
-	public String getId() {
-		return this.id;
-	}
+    /**
+     * full constructor
+     */
+    public Subarea(String id, Decidedzone decidedzone, Region region,
+                   String addresskey, String startnum, String endnum, String single,
+                   String position) {
+        this.id = id;
+        this.decidedzone = decidedzone;
+        this.region = region;
+        this.addresskey = addresskey;
+        this.startnum = startnum;
+        this.endnum = endnum;
+        this.single = single;
+        this.position = position;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    // Property accessors
 
-	public Decidedzone getDecidedzone() {
-		return this.decidedzone;
-	}
+    public String getId() {
+        return this.id;
+    }
 
-	public void setDecidedzone(Decidedzone decidedzone) {
-		this.decidedzone = decidedzone;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public Region getRegion() {
-		return this.region;
-	}
+    public Decidedzone getDecidedzone() {
+        return this.decidedzone;
+    }
 
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+    public void setDecidedzone(Decidedzone decidedzone) {
+        this.decidedzone = decidedzone;
+    }
 
-	public String getAddresskey() {
-		return this.addresskey;
-	}
+    public Region getRegion() {
+        return this.region;
+    }
 
-	public void setAddresskey(String addresskey) {
-		this.addresskey = addresskey;
-	}
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
-	public String getStartnum() {
-		return this.startnum;
-	}
+    public String getAddresskey() {
+        return this.addresskey;
+    }
 
-	public void setStartnum(String startnum) {
-		this.startnum = startnum;
-	}
+    public void setAddresskey(String addresskey) {
+        this.addresskey = addresskey;
+    }
 
-	public String getEndnum() {
-		return this.endnum;
-	}
+    public String getStartnum() {
+        return this.startnum;
+    }
 
-	public void setEndnum(String endnum) {
-		this.endnum = endnum;
-	}
+    public void setStartnum(String startnum) {
+        this.startnum = startnum;
+    }
 
-	public String getSingle() {
-		return this.single;
-	}
+    public String getEndnum() {
+        return this.endnum;
+    }
 
-	public void setSingle(String single) {
-		this.single = single;
-	}
+    public void setEndnum(String endnum) {
+        this.endnum = endnum;
+    }
 
-	public String getPosition() {
-		return this.position;
-	}
+    public String getSingle() {
+        return this.single;
+    }
 
-	public void setPosition(String position) {
-		this.position = position;
-	}
+    public void setSingle(String single) {
+        this.single = single;
+    }
+
+    public String getPosition() {
+        return this.position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
 }

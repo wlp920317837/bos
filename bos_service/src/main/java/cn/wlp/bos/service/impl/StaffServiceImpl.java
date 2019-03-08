@@ -4,9 +4,13 @@ import cn.wlp.bos.common.PageBean;
 import cn.wlp.bos.dao.StaffDao;
 import cn.wlp.bos.domain.Staff;
 import cn.wlp.bos.service.StaffService;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author Wlp
@@ -49,5 +53,13 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public void edit(Staff model) {
         staffDao.saveOrUpdate(model);
+    }
+
+    @Override
+    public List<Staff> findStaffNoA() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Staff.class);
+        dc.add(Restrictions.ne("deltag", "1"));
+        List<Staff> staffList = staffDao.findByCriteria(dc);
+        return staffList;
     }
 }
