@@ -3,14 +3,19 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context.xsd
 
 
-						http://www.springframework.org/schema/tx 
-						http://www.springframework.org/schema/tx/spring-tx.xsd">
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd
+
+
+						http://cxf.apache.org/jaxws
+						http://cxf.apache.org/schemas/jaxws.xsd">
 
     <!-- 加载属性文件 -->
     <context:property-placeholder location="classpath:db.properties"/>
@@ -55,4 +60,9 @@
     <context:annotation-config/>
 
     <tx:annotation-driven/>
+
+    <!-- 注册crm客户端代理对象 -->
+    <jaxws:client name="crmProxy" id="crmProxy" serviceClass="cn.wlp.bos.crm.CustomerService"
+                  address="http://localhost:8080/bos_crm_war_exploded/service/customer"/>
+
 </beans>

@@ -1,5 +1,6 @@
 package cn.wlp.bos.web.action;
 
+import cn.wlp.bos.crm.CustomerService;
 import cn.wlp.bos.domain.Decidedzone;
 import cn.wlp.bos.domain.Staff;
 import cn.wlp.bos.service.DecidedzoneService;
@@ -9,6 +10,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import javax.annotation.Resource;
 
 /**
  * @author Wlp
@@ -20,6 +23,9 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 
     @Autowired
     private DecidedzoneService decidedzoneService;
+
+    @Resource
+    private CustomerService crmProxy;
 
     private String[] subareaid;
 
@@ -49,4 +55,6 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
         java2Json(pageBean, new String[]{"subareas", "decidedzones"});
         return null;
     }
+
+
 }
