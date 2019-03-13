@@ -135,4 +135,6 @@ public class SubareaAction extends BaseAction<Subarea> {
         java2Json(subareaList, new String[]{"Decidedzone", "subareas"});
         return null;
     }
+
+
 }

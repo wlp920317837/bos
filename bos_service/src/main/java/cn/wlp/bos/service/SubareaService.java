@@ -68,4 +68,13 @@ public interface SubareaService {
      */
     List<Subarea> findSubareaNoA();
 
+    /**
+     * findSubareaA
+     *
+     * @param decidedzoneId
+     * @return java.util.List<cn.wlp.bos.domain.Subarea>
+     * @author 王力鹏
+     * @date 2019/3/13
+     */
+    List<Subarea> findSubareaA(String decidedzoneId);
 }
