@@ -19,7 +19,7 @@
             </interceptor-stack>
         </interceptors>
         <!-- 设置默认拦截器栈 -->
-        <default-interceptor-ref name="bosStack"/>
+        <default-interceptor-ref name="defaultStack"/>
 
         <!-- 全局结果集配置 -->
         <global-results>
@@ -56,6 +56,7 @@
         <action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
             <result name="list">/WEB-INF/pages/qupai/quickworkorder.jsp</result>
         </action>
+
         <!-- 权限控制 -->
         <action name="userAction_*" class="userAction" method="{1}">
         </action>

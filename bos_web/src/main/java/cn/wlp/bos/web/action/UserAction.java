@@ -4,10 +4,16 @@ import cn.wlp.bos.common.BosUtils;
 import cn.wlp.bos.domain.User;
 import cn.wlp.bos.service.UserService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 
 import java.io.IOException;
 
@@ -31,11 +37,20 @@ public class UserAction extends BaseAction<User> {
         String key = (String) ServletActionContext.getRequest().getSession().getAttribute("key");
         if (StringUtils.isNotBlank(checkcode) && checkcode.equals(key)) {
             //输入验证码正确
-            User user = userService.login(model);
-            if (user == null) {
-                this.addActionError("输入的用户名或密码有误！");
+            String username = model.getUsername();
+            String password = DigestUtils.md5DigestAsHex(model.getPassword().getBytes());
+            //新建subject对象
+            Subject subject = SecurityUtils.getSubject();
+            AuthenticationToken token = new UsernamePasswordToken(username, password);
+            //使用shiro框架登录
+            try {
+                subject.login(token);
+            } catch (AuthenticationException e) {
+                this.addActionError("用户名或密码错误!");
+                e.printStackTrace();
                 return LOGIN;
             }
+            User user = (User) subject.getPrincipal();
             BosUtils.getSession().setAttribute("loginUser", user);
             return HOME;
         } else {

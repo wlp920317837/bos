@@ -65,4 +65,27 @@
     <jaxws:client name="crmProxy" id="crmProxy" serviceClass="cn.wlp.bos.crm.CustomerService"
                   address="http://localhost:8080/bos_crm_war_exploded/service/customer"/>
 
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="bosRealm"/>
+    </bean>
+    <bean id="bosRealm" class="cn.wlp.bos.realm.BosRealm"></bean>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /css/** = anon
+                /js/** = anon
+                /images/** = anon
+                /validatecode.jsp* = anon
+                /login.jsp = anon
+                /userAction_login.action = anon
+                /page_base_staff.action = perms["staff-list"]
+                /* = authc
+            </value>
+        </property>
+    </bean>
+
 </beans>
