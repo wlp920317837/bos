@@ -46,6 +46,16 @@
             <result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
         </action>
 
+        <!-- 业务受理 -->
+        <action name="noticebillAction_*" class="noticebillAction" method="{1}">
+            <result name="add">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+        </action>
+        <action name="workbillAction_*" class="workbillAction" method="{1}">
+            <result name="list">/WEB-INF/pages/qupai/noticebill.jsp</result>
+        </action>
+        <action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
+            <result name="list">/WEB-INF/pages/qupai/quickworkorder.jsp</result>
+        </action>
         <!-- 权限控制 -->
         <action name="userAction_*" class="userAction" method="{1}">
         </action>

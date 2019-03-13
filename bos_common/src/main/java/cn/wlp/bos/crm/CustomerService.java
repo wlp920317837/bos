@@ -17,9 +17,21 @@ import java.util.List;
  */
 @WebService(name = "CustomerService", targetNamespace = "http://service.crm.bos.wlp.cn/")
 @XmlSeeAlso({
-
+        
 })
 public interface CustomerService {
+
+    /**
+     * @param arg0
+     * @return returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findDecidedzoneIdByAddress", targetNamespace = "http://service.crm.bos.wlp.cn/", className = "cn.wlp.bos.crm.service.FindDecidedzoneIdByAddress")
+    @ResponseWrapper(localName = "findDecidedzoneIdByAddressResponse", targetNamespace = "http://service.crm.bos.wlp.cn/", className = "cn.wlp.bos.crm.service.FindDecidedzoneIdByAddressResponse")
+    public String findDecidedzoneIdByAddress(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0);
 
     /**
      * @param arg0
@@ -41,6 +53,18 @@ public interface CustomerService {
     @RequestWrapper(localName = "findAll", targetNamespace = "http://service.crm.bos.wlp.cn/", className = "cn.wlp.bos.crm.service.FindAll")
     @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://service.crm.bos.wlp.cn/", className = "cn.wlp.bos.crm.service.FindAllResponse")
     public List<Customer> findAll();
+
+    /**
+     * @param arg0
+     * @return returns cn.wlp.bos.crm.service.Customer
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findCustomerByTel", targetNamespace = "http://service.crm.bos.wlp.cn/", className = "cn.wlp.bos.crm.service.FindCustomerByTel")
+    @ResponseWrapper(localName = "findCustomerByTelResponse", targetNamespace = "http://service.crm.bos.wlp.cn/", className = "cn.wlp.bos.crm.service.FindCustomerByTelResponse")
+    public Customer findCustomerByTel(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0);
 
     /**
      * @return returns java.util.List<cn.wlp.bos.crm.service.Customer>
